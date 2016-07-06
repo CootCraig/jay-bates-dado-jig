@@ -15,6 +15,9 @@ function right_fence_length() = inch(20.5);
 function right_fence_width() = inch(3.0 + (5.0/8.0));
 function right_base_width() = inch(6.0 + (5.0/8.0));
 
+function hold_down_spacer_length() = inch(1 + (3/4));
+function hold_down_pad_length() = inch(2 + (3/4));
+
 // green #95CB69 [0.58,0.80,0.41]
 function green() = [0.58,0.80,0.41];
 

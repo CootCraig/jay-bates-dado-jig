@@ -1,27 +1,29 @@
 use <defs.scad>;
-use <left-fence-part.scad>;
-use <left-base-part.scad>;
-use <right-angle-part.scad>;
-use <right-fence-part.scad>;
-use <right-base-part.scad>;
+use <left-fence-sub.scad>;
+use <right-angle-sub.scad>;
+use <right-fence-sub.scad>;
+use <hold-down-sub.scad>;
 
-right_angle_part();
-translate([0,(left_fence_length() - right_angle_width()),0]) {
-  right_angle_part();
-}
-
-translate([0, 0, right_angle_thickness() + piece_thickness()]) {
-  left_fence_part();
-}
+right_angle_sub();
 
 translate([0, 0, right_angle_thickness()]) {
-  left_base_part();
+  left_fence_sub();
 }
 
-translate([(left_base_width() + 2.85), ((left_fence_length() - right_fence_length()) / 2.0), right_angle_thickness()]) {
-  right_base_part();
-  translate([(right_base_width() - right_fence_width()), 0, piece_thickness()]) {
-    right_fence_part();
+translate([(right_base_width() + left_base_width() + inch(1)), 0, 0]) {
+  translate([0, (right_fence_length() + ((left_fence_length() - right_fence_length())/2)), right_angle_thickness()]) {
+    rotate([0, 0, 180]) {
+      right_fence_sub();
+    }
+  }
+}
+
+translate([(right_angle_length() - hold_down_spacer_length()), 0, right_angle_thickness()]) {
+  hold_down_sub();
+}
+translate([right_angle_length(), left_fence_length(), right_angle_thickness()]) {
+  rotate([0, 0, 180]) {
+    hold_down_sub();
   }
 }
 
